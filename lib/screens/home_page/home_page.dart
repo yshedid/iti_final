@@ -18,11 +18,11 @@ class MainPageContent extends StatefulWidget {
 }
 
 class _HomePageChatState extends State<MainPageContent> {
-  int currentIdx = 1;
+  int currentIdx = 2;
   List<Widget> screens = [
     const ProfilePage(),
-    HomePageContent(),
     const CategoryPage(),
+    HomePageContent(),
     const AboutUsScreen(),
     const ContantScreen()
 
@@ -37,11 +37,19 @@ class _HomePageChatState extends State<MainPageContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomePage'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Terarya Store'),
+            Image.asset('assets/images/splash_android12_logo.png',width: 30,height: 30,),
+          ],
+        ),
         centerTitle: true,
       ),
       body: screens[currentIdx],
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
         currentIndex: currentIdx,
           onTap: (newIdx){
           currentIdx = newIdx;
@@ -51,11 +59,11 @@ class _HomePageChatState extends State<MainPageContent> {
           },
           items: const [
 
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'profile',backgroundColor: myGray),
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home',backgroundColor: myGray),
-        BottomNavigationBarItem(icon: Icon(Icons.category), label: 'categories',backgroundColor: myGray),
-        BottomNavigationBarItem(icon: Icon(Icons.people_alt), label: 'US',backgroundColor: myGray),
-        BottomNavigationBarItem(icon: Icon(Icons.add_alert_outlined), label: 'Contant',backgroundColor: myGray),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'profile'),
+        BottomNavigationBarItem(icon: Icon(Icons.category,), label: 'categories'),
+        BottomNavigationBarItem(icon: Icon(Icons.home,), label: 'home'),
+        BottomNavigationBarItem(icon: Icon(Icons.people_alt), label: 'US'),
+        BottomNavigationBarItem(icon: Icon(Icons.add_alert_outlined,), label: 'content'),
       ]),
     );
   }

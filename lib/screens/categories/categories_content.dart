@@ -17,6 +17,7 @@ class _HomePageChatState extends State<CategoriesContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: ListView(
         children: [
           Padding(

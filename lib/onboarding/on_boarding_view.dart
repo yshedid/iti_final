@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iti_final/helper/app_color.dart';
+import 'package:iti_final/login/login_screeen.dart';
 import 'package:iti_final/login/register_screen.dart';
 import 'package:iti_final/onboarding/on_boarding_item.dart';
 import 'package:iti_final/onboarding/widget/skip_button.dart';
@@ -43,7 +44,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     } else {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const RegestrScreeen(),
+          builder: (context) => const LoginScreeen(),
         ),
       );
     }

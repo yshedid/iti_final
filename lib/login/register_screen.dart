@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iti_final/helper/app_color.dart';
 import 'package:iti_final/login/login_screeen.dart';
@@ -16,6 +19,9 @@ class RegestrScreeen extends StatefulWidget {
 
 class _RegestrScreeenState extends State<RegestrScreeen> {
   bool agreeToTerms = false;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
 
   
   
@@ -45,11 +51,11 @@ class _RegestrScreeenState extends State<RegestrScreeen> {
                 ),
                 const SizedBox(height: 32),
                 
-                const BuildTextFromfield(label: 'Name',hint: 'Full Name',),
+                 BuildTextFromfield(label: 'Name',hint: 'Full Name',controller: nameController,),
                 const SizedBox(height: 16),
-                const BuildTextFromfield(label: 'Email',hint:  'Email Address'),
+                 BuildTextFromfield(label: 'Email',hint:  'Email Address',controller: emailController,),
                 const SizedBox(height: 16),
-                const BuildTextFromfield(label: 'Password',hint:  'New Password', isPassword: true),
+                 BuildTextFromfield(label: 'Password',hint:  'New Password', isPassword: true,controller: passwordController,),
                 const SizedBox(height: 16),
                 Row(
                   children: [
@@ -73,10 +79,16 @@ class _RegestrScreeenState extends State<RegestrScreeen> {
                 ),
                const SizedBox(height: 24),
                 ElevatedButton(
-                  // ignore: sort_child_properties_last
+
                   child: const Text('Register', style: TextStyle(fontSize: 16)),
                   onPressed: ()
-                   {},
+                   {
+                     if ( (emailController.text != '') &&  (passwordController.text != '')) {
+                       // Perform login
+                       var y =FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text,
+                           password: passwordController.text);
+                     }
+                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: myWhithe,
                     backgroundColor: myBlue,

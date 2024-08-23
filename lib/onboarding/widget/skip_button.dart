@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iti_final/helper/app_color.dart';
+import 'package:iti_final/login/login_screeen.dart';
 import 'package:iti_final/login/register_screen.dart';
 
 class SkipButton extends StatelessWidget {
@@ -11,7 +12,7 @@ class SkipButton extends StatelessWidget {
       onPressed: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const RegestrScreeen(),
+            builder: (context) => const LoginScreeen(),
           ),
         );
       },

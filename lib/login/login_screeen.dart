@@ -1,11 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iti_final/helper/app_color.dart';
+import 'package:iti_final/login/register_screen.dart';
 import 'package:iti_final/onboarding/widget/bulid_text_fromfield.dart';
 import 'package:iti_final/onboarding/widget/social_button.dart';
 import 'package:iti_final/screens/home_page/home_page.dart';
 
 class LoginScreeen extends StatefulWidget {
   const LoginScreeen({super.key});
+
   static String id = 'LoginScreeen';
 
   @override
@@ -15,6 +18,9 @@ class LoginScreeen extends StatefulWidget {
 
 class _LoginScreeen extends State<LoginScreeen> {
   bool agreeToTerms = false;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +49,18 @@ class _LoginScreeen extends State<LoginScreeen> {
                 ),
                 const SizedBox(height: 32),
                 const SizedBox(height: 16),
-                const BuildTextFromfield(label: 'Email', hint: 'Email Address'),
+                BuildTextFromfield(
+                  label: 'Email',
+                  hint: 'Email Address',
+                  controller: emailController,
+                ),
                 const SizedBox(height: 16),
-                const BuildTextFromfield(
-                    label: 'Password', hint: 'New Password', isPassword: true),
+                BuildTextFromfield(
+                  label: 'Password',
+                  hint: 'New Password',
+                  isPassword: true,
+                  controller: passwordController,
+                ),
                 const SizedBox(height: 16),
                 Row(
                   children: [
@@ -75,11 +89,27 @@ class _LoginScreeen extends State<LoginScreeen> {
                   // ignore: sort_child_properties_last
                   child: const Text('Sign In', style: TextStyle(fontSize: 16)),
                   onPressed: () {
-                    Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => MainPageContent(),
+                    if ((emailController.text != '') &&
+                        (passwordController.text != '')) {
+                      // Perform login
+                      FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: emailController.text,
+                              password: passwordController.text)
+                          .then((value) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (ctx) => MainPageContent()));
+                      }).catchError((error) {
+                        var snack = SnackBar(
+                          content: Text(
+                            error.toString(),
                           ),
                         );
+                        ScaffoldMessenger.of(context).showSnackBar(snack);
+                      });
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: myWhithe,
@@ -125,7 +155,10 @@ class _LoginScreeen extends State<LoginScreeen> {
                           style: TextStyle(
                               color: myBlue, fontWeight: FontWeight.bold)),
                       onPressed: () {
-                        
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (ctx) => RegestrScreeen()));
                       },
                     ),
                   ],

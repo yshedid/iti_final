@@ -6,12 +6,14 @@ class BuildTextFromfield extends StatefulWidget {
   final String hint;
   final bool isPassword;
   final Function(String)? onChanged;
+  final TextEditingController controller;
 
   const BuildTextFromfield({
     required this.label,
     required this.hint,
     this.isPassword = false,
     this.onChanged,
+    required this.controller,
     super.key,
   });
 
@@ -23,7 +25,6 @@ class _BuildTextFromfieldState extends State<BuildTextFromfield> {
   bool showPassword = false;
   String? emailError;
   String? passwordError;
-  final TextEditingController _controller = TextEditingController();
 
   bool isValidEmail(String email) {
     final emailRegExp = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
@@ -60,7 +61,7 @@ class _BuildTextFromfieldState extends State<BuildTextFromfield> {
         Text(widget.label, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
         const SizedBox(height: 8),
         TextFormField(
-          controller: _controller,
+          controller: widget.controller,
           obscureText: widget.isPassword && !showPassword,
           keyboardType: widget.isPassword ? TextInputType.text : TextInputType.emailAddress,
           onChanged: (value) {

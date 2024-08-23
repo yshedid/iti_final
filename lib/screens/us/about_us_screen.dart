@@ -32,8 +32,8 @@ class AboutUsScreen extends StatelessWidget {
               const Row(
                 children: [],
               ),
-              _buildContactItem(Icons.phone, '01012229627=> Yousef Elkholy'),
-              _buildContactItem(Icons.phone, '01126459846=> Yousef Shedid'),
+              _buildContactItem(Icons.phone, '01012229627', 'Yousef Elkholy'),
+              _buildContactItem(Icons.phone, '01126459846', 'Yousef Shedid'),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -119,7 +119,7 @@ class AboutUsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildContactItem(IconData icon, String text) {
+  Widget _buildContactItem(IconData icon, String number, String name) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Row(
@@ -128,8 +128,10 @@ class AboutUsScreen extends StatelessWidget {
             icon,
             color: myBlue,
           ),
-          const SizedBox(width: 8),
-          Text(text, style: const TextStyle(fontSize: 15)),
+          Text(number, style: const TextStyle(fontSize: 15)),
+          const Spacer(flex: 1,),
+          Text(name, style: const TextStyle(fontSize: 17)),
+          Spacer(flex: 2,)
         ],
       ),
     );
