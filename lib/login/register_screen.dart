@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iti_final/helper/app_color.dart';
+import 'package:iti_final/login/login_screeen.dart';
 import 'package:iti_final/onboarding/widget/bulid_text_fromfield.dart';
 import 'package:iti_final/onboarding/widget/social_button.dart';
 
@@ -74,7 +75,8 @@ class _RegestrScreeenState extends State<RegestrScreeen> {
                 ElevatedButton(
                   // ignore: sort_child_properties_last
                   child: const Text('Register', style: TextStyle(fontSize: 16)),
-                  onPressed: () {},
+                  onPressed: ()
+                   {},
                   style: ElevatedButton.styleFrom(
                     foregroundColor: myWhithe,
                     backgroundColor: myBlue,
@@ -115,7 +117,11 @@ class _RegestrScreeenState extends State<RegestrScreeen> {
                       child:const Text('Login', style: TextStyle(color: myBlue, fontWeight: FontWeight.bold)),
                       onPressed: ()
                        {
-                        Navigator.of(context).pushNamed('LoginScreeen');
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const LoginScreeen(),
+                          ),
+                        );
                        },
                     ),
                   ],

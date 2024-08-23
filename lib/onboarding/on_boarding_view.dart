@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iti_final/helper/app_color.dart';
+import 'package:iti_final/login/register_screen.dart';
 import 'package:iti_final/onboarding/on_boarding_item.dart';
 import 'package:iti_final/onboarding/widget/skip_button.dart';
 
@@ -40,9 +41,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         curve: Curves.easeInOut,
       );
     } else {
-      
-      Navigator.of(context).pushNamed('RegestrScreeen');
-      
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const RegestrScreeen(),
+        ),
+      );
     }
   }
 
@@ -118,8 +121,10 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                         child: FloatingActionButton(
                           onPressed: _goToNextPageOrRegister,
                           child: Text(
-                            currentPageIndex == controler.items.length - 1 ? 'Get Started' : 'Next',
-                            style:   const TextStyle(color: Colors.white),
+                            currentPageIndex == controler.items.length - 1
+                                ? 'Get Started'
+                                : 'Next',
+                            style: const TextStyle(color: Colors.white),
                           ),
                           backgroundColor: myBlue,
                           shape: RoundedRectangleBorder(

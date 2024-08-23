@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iti_final/helper/app_color.dart';
+import 'package:iti_final/onboarding/on_boarding_view.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
   
   static String id =  'SplashScreen';
-
-
-
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -19,7 +17,11 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.of(context).pushNamed('OnBoardingView');
+     Navigator.of(context).push(
+  MaterialPageRoute(
+    builder: (context) => const OnBoardingView(),
+  ),
+);
     });
   }
   @override
