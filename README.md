@@ -6,3 +6,4 @@ A new Flutter project.
 
 This project is a starting point for a Flutter application.
 It's the final project for the summer training in iti.
+the description is in this folder [description folder](https://github.com/yshedid/iti_final/tree/main/project_details)
